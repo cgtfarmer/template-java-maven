@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      target: demo-liquibase
+    environment:
+      MAVEN_CONFIG: /root/.m2
+    expose:
+      - 80
+    extra_hosts: # For Linux
+      - host.docker.internal:host-gateway
+    tty: true
+    volumes:
+      - ./:/usr/src/app
+      - ${HOME}/.m2/repository:/root/.m2/repository
